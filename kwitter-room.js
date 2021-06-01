@@ -17,5 +17,32 @@ function AddUser(){
         purpose: "adding a room"
     });
     localStorage.setItem("Room", user_name);
+    window.location = "page.html";
 }
 document.getElementById("user_name").innerHTML = "Welcome back " + localStorage.getItem("username");
+function redirectToRoom(name){
+    localStorage.setItem("room_name", name);
+    window.location = "kwitter_page.html"
+
+}
+function logout(){
+    localStorage.removeItem("username");
+    localStorage.removeItem("room_name");
+    window.location = "index.html";
+}
+function getData() {
+    firebase.database().ref("/").on('value', function(snapshot) {
+          document.getElementById("output").innerHTML = "";
+          snapshot.forEach(function(childSnapshot) {
+                childKey  = childSnapshot.key;
+                Room_names = childKey;
+                //Start code
+                console.log("Room Name -" + Room_names);
+                var row = "<div class='room_name' id='" + Room_names + " onclick='redirectToRoom(this.id)'># " + Room_names + "</div><hr>";
+                document.getElementById("output").innerHTML += row;
+
+                //End code
+          });
+    });
+}
+getData();
