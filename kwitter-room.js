@@ -19,15 +19,15 @@ function AddUser(){
     localStorage.setItem("Room", user_name);
     window.location = "page.html";
 }
-document.getElementById("user_name").innerHTML = "Welcome back " + localStorage.getItem("username");
+document.getElementById("user_name").innerHTML = "Welcome back " + localStorage.getItem("user_name");
 function redirectToRoom(name){
-    localStorage.setItem("room_name", name);
+    localStorage.setItem("Room", name);
     window.location = "kwitter_page.html"
 
 }
 function logout(){
     localStorage.removeItem("username");
-    localStorage.removeItem("room_name");
+    localStorage.removeItem("Room");
     window.location = "index.html";
 }
 function getData() {
